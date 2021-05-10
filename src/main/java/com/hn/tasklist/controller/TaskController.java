@@ -2,7 +2,6 @@ package com.hn.tasklist.controller;
 
 import com.hn.tasklist.model.Task;
 import com.hn.tasklist.repository.TaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,10 +12,10 @@ import java.util.List;
  * @author fsaldanha
  */
 @RestController
+@RequestMapping("/api/v1")
 public class TaskController {
 
-    @Autowired
-    TaskRepository taskRepository = TaskRepository.getInstance();
+    final TaskRepository taskRepository = TaskRepository.getInstance();
 
     /**
      * Get all tasks.
@@ -31,7 +30,7 @@ public class TaskController {
     /**
      * Return the incomplete tasks.
      *
-     * @return the list with todo tasks
+     * @return the list with pending tasks
      */
     @GetMapping("/taskTodo")
     public List<Task> getIncompleteTasks(){
@@ -72,5 +71,14 @@ public class TaskController {
         taskRepository.updateStatus(id);
 
         return taskRepository.findTaskId(id);
+    }
+
+    /**
+     * Reset the memory.
+     *
+     */
+    @GetMapping("/reset")
+    public void updateTaskStatus() {
+        taskRepository.reset();
     }
 }

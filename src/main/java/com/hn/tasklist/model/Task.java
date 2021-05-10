@@ -13,6 +13,8 @@ public class Task {
 
     private boolean complete;
 
+    public Task(){}
+
     public Task(Integer id, String label) {
         this.id = id;
         this.label = label;
@@ -26,15 +28,6 @@ public class Task {
      */
     public long getId() {
         return id;
-    }
-
-    /**
-     * Set the id of task.
-     *
-     * @param id
-     */
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     /**

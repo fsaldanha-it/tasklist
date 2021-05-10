@@ -37,7 +37,7 @@ public final class TaskRepository {
     public Task save(String label) {
         Task task = new Task(this.id++, label);
         taskList.add(task);
-        System.out.println("Add task: " + label);
+        System.out.println("Add task: " + label + " with id " + task.getId());
 
         return task;
     }
@@ -60,5 +60,11 @@ public final class TaskRepository {
                 task.setComplete(!task.isComplete());
             }
         });
+    }
+
+    public void reset() {
+        System.out.println("Reset the task list");
+        taskList.forEach(taskList::remove);
+        this.id = 0;
     }
 }
