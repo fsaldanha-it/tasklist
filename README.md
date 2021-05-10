@@ -28,13 +28,13 @@ The app will start running at <http://localhost:8080>.
 
 The app defines following APIs.
 
-    GET /allTasks
+    http://localhost:8080/allTasks
     
-    GET /taskTodo
+    http://localhost:8080/taskTodo
     
-    GET /taskId/{id}
+    http://localhost:8080/taskId/{id}
     
-    GET /addTask/{label}
+    http://localhost:8080/addTask/{label}
     
-    GET /updateTaskStatus/{id}
+    http://localhost:8080/updateTaskStatus/{id}
 
