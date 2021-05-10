@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 public final class TaskRepository {
 
     private static TaskRepository INSTANCE;
-    private String info = "Initial info class";
 
     private TaskRepository() {
     }
@@ -27,7 +26,7 @@ public final class TaskRepository {
         return INSTANCE;
     }
 
-    private List<Task> taskList = new ArrayList<>();
+    private final List<Task> taskList = new ArrayList<>();
     private Integer id = 0;
 
     public List<Task> findAll() {
@@ -51,17 +50,14 @@ public final class TaskRepository {
     public Task findTaskId(Integer id) {
         System.out.println("Find task id: " + id);
         Optional<Task> task = taskList.stream().filter(t -> t.getId() == id).findFirst();
-        if (task.isPresent())
-            return task.get();
-        else
-            return null;
+        return task.orElse(null);
     }
 
     public void updateStatus(Integer id) {
         System.out.println("Update status of task id: " + id);
-        taskList.stream().forEach(task -> {
+        taskList.forEach(task -> {
             if(task.getId() == id) {
-                task.setComplete(task.isComplete() ? false : true);
+                task.setComplete(!task.isComplete());
             }
         });
     }
