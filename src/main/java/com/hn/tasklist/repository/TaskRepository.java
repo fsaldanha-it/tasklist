@@ -38,15 +38,18 @@ public final class TaskRepository {
     public Task save(String label) {
         Task task = new Task(this.id++, label);
         taskList.add(task);
+        System.out.println("Add task: " + label);
 
         return task;
     }
 
     public List<Task> findCompletedTask(boolean status) {
+        System.out.println("Find completed tasks");
         return taskList.stream().filter(task -> task.isComplete() == status).collect(Collectors.toList());
     }
 
     public Task findTaskId(Integer id) {
+        System.out.println("Find task id: " + id);
         Optional<Task> task = taskList.stream().filter(t -> t.getId() == id).findFirst();
         if (task.isPresent())
             return task.get();
@@ -55,6 +58,7 @@ public final class TaskRepository {
     }
 
     public void updateStatus(Integer id) {
+        System.out.println("Update status of task id: " + id);
         taskList.stream().forEach(task -> {
             if(task.getId() == id) {
                 task.setComplete(task.isComplete() ? false : true);

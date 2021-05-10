@@ -33,7 +33,7 @@ public class TaskController {
      *
      * @return the list with todo tasks
      */
-    @GetMapping("taskTodo")
+    @GetMapping("/taskTodo")
     public List<Task> getIncompleteTasks(){
         return taskRepository.findCompletedTask(false);
     }
@@ -44,7 +44,7 @@ public class TaskController {
      * @param id the id of task
      * @return
      */
-    @GetMapping("taskId")
+    @GetMapping("/taskId/{id}")
     public Task getTaskId(@PathVariable(value = "id") Integer id){
         return taskRepository.findTaskId(id);
     }
